@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 인스턴스는 뷰로 개발할때 필수로 생성해야하는 코드 단위 -->
+  <div id="app"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 아래와 같이 작성하는 것이 가독성이 좋다
+    const vm = new Vue({ // 생성자 안에 들어가는 것은 객체 형태로 들어간다
+      el: '#app', // 해당 querySelector 에 vue 인스턴스를 붙이겠다는 의미
+      data: {
+        message: 'hi',
+      }
+    });
+
+    /* 
+    new Vue({
+      el: ,
+      template: ,
+      data: ,
+      methods: ,
+      created: ,
+      watch: ,
+    })
+    */
+  </script>
+</body>
+</html>
