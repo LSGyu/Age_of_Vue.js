@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 컴포넌트는 각각 고유한 데이터 유효 범위를 갖는다. -->
+  <!-- 하위 컴포넌트에서 상위 컴포넌트로 데이터 전송은 event emit, 상위 컴포넌트에서 하위 컴포넌트로 데이터 전송은 props -->
+  <!-- 컴포넌트 통신 규칙이 있을 때 데이터의 흐름을 추적하기 쉽다 -->
+  <div id="app">
+    <!-- v-bind:props 속성 이름="상위 컴포넌트 데이터 이름" -->
+    <app-header v-bind:propsdata="message"></app-header>
+    <app-content v-bind:propsdata="num"></app-content>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let appHeader = {
+      template: '<h1>{{ propsdata }}</h1>', // props 를 담은 변수명을 콧수염 괄호 사이에 작성
+      props: ['propsdata'],
+    };
+     
+    // 실습 props data 받아오기
+    let appContent = {
+      template: '<div>{{ propsdata }}</div>',
+      props: ['propsdata'],
+    }
+
+    new Vue({
+      el: '#app',
+      components: {
+        'app-header': appHeader,
+        'app-content': appContent,
+      },
+      data: {
+        message: 'hi',
+        num: 10,
+      },
+    })
+  </script>
+</body>
+</html>
