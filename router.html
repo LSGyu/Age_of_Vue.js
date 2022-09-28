@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-    <div id="app"></div>
+  <div id="app">
+    <!-- router-view 인식 에러가 발생하면 인스턴스에 라우터 속성이 있는지 확인해야함. -->
+    <!-- path에 따른 컴포넌트 템플릿을 보여준다 -->
+    <router-view></router-view>
+    <!-- 하지만 url 수정으로만 페이지를 변경할 수 있기 때문에 -->
+    <!-- 사용자가 원하는 대로 페이지를 변경시키기 위해 router-link 사용 -->
+    <div>
+      <router-link to="/login">Login</router-link>
+      <router-link to="/main">Main</router-link>
+    </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
-    <script>
-        let router = new VueRouter({
-            // 라우팅 정보
-            routes: [
-                {
-                    // 페이지 경로
-                    path: '/login',
-                    // 페이지에 표현할 컴포넌트
-                    component: '<div>login</div>'
-                },
-                // 실습
-                {
-                    path: '/main',
-                    component: '<div>main</div>'
-                }
-            ]
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+  <script>
+    let loginComponent = {
+      template: '<div>login</div>'
+    };
 
-        });
+    let mainComponent = {
+      template: '<div>main</div>'
+    };
 
-        new Vue({
-            el: '#app',
-            router: router,
-        });
-    </script>
+    let router = new VueRouter({
+      //mode: 'history',
+      // 라우팅 정보
+      routes: [
+        {
+          // 페이지 경로
+          path: '/login',
+          // name: 'login',
+          // 페이지에 표현할 컴포넌트
+          // vue 인스턴스와 router 인스턴스의 component 차이점은
+          // vue에는 여러개 등록 가능하기 때문에 components, router에는 하나의 컴퍼넌트만 등록 가능하기 때문에 component
+          component: loginComponent
+        },
+        // 실습
+        {
+          path: '/main',
+          component: mainComponent
+        }
+      ]
+    });
+
+    new Vue({
+      el: '#app',
+      router: router, 
+    });
+  </script>
 </body>
 </html>
